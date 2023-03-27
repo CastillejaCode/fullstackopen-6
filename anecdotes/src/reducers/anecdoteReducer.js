@@ -35,11 +35,16 @@ const anecdoteSlice = createSlice({
 			return state.map((a) => (a.id === id ? newAnecdote : a));
 		},
 		addAnecdoteHelper(state, action) {
-			const newAnecdote = asObject(action.payload);
-			return state.concat(newAnecdote);
+			state.push(action.payload);
+		},
+		setAnecdotes(state, action) {
+			return action.payload;
 		},
 	},
 });
+
+export const { voteAnecdote, addAnecdoteHelper, setAnecdotes } = anecdoteSlice.actions;
+export default anecdoteSlice.reducer;
 
 // const reducer = (state = initialState, action) => {
 // 	// console.log('state now: ', state);
@@ -80,5 +85,3 @@ const anecdoteSlice = createSlice({
 // 		},
 // 	};
 // };
-export const { voteAnecdote, addAnecdoteHelper } = anecdoteSlice.actions;
-export default anecdoteSlice.reducer;
