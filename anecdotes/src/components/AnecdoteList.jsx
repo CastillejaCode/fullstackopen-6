@@ -7,7 +7,7 @@ const AnecdoteList = () => {
 		if (filter !== '') {
 			return anecdotes.filter((a) => a.content.includes(filter)).sort((a, b) => b.votes - a.votes);
 		}
-		return anecdotes.sort((a, b) => b.votes - a.votes);
+		return [...anecdotes].sort((a, b) => b.votes - a.votes);
 	});
 
 	const vote = (id) => {
