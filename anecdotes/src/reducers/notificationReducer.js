@@ -6,10 +6,7 @@ const notifcationSlice = createSlice({
 	initialState,
 	reducers: {
 		addNotification(state, action) {
-			return `You added "${action.payload}"`;
-		},
-		addNotificationVote(state, action) {
-			return `You voted for "${action.payload}"`;
+			return action.payload;
 		},
 		removeNotification(state, action) {
 			return null;
@@ -18,4 +15,11 @@ const notifcationSlice = createSlice({
 });
 
 export const { addNotification, removeNotification, addNotificationVote } = notifcationSlice.actions;
+
+export const setNotification = (message, seconds) => {
+	return (dispatch) => {
+		dispatch(addNotification(message));
+		setTimeout(() => dispatch(removeNotification()), seconds * 1000);
+	};
+};
 export default notifcationSlice.reducer;
